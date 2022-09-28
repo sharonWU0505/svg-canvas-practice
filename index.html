@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVG & Canvas Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="./styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <section>
+      <h3>Animated Checkbox</h3>
+      <div class="checkboxContainer">
+        <label for="cb">
+          <input type="checkbox" id="cb" name="cb" />
+          <svg id="customCheckbox" viewBox="0 0 100 100">
+            <rect id="checkbox-rect" width="100%" height="100%" />
+            <path id="checkbox-check" d="M 20 50 L 40 70 L 75 25" />
+          </svg>
+          Attend
+        </label>
+      </div>
+    </section>
+  
+    <section>
+      <h3>Jumping Circles</h3>
+      <div class="jumpingCircles">
+        <svg viewBox="0 0 60 20">
+          <circle class="jumpingCircle" />
+          <circle class="jumpingCircle" />
+          <circle class="jumpingCircle" />
+          <circle class="jumpingCircle" />
+          <circle class="jumpingCircle" />
+        </svg>
+      </div>
+    </section>
+  
+    <section>
+      <h3>Loading Circle</h3>
+      <svg viewBox="0 0 50 50" id="loadingCircleSvg">
+        <circle class="loadingCircle" />
+      </svg>
+    </section>
+  
+    <section>
+      <h3>Move Circle by Clicking</h3>
+      <div id="moveCircleContainer">
+        <svg id="moveCircle" width="100%" height="100%">
+          <circle id="circleToMove" />
+        </svg>
+      </div>
+    </section>
+  </container>
+
+  <script>
+    const moveCircleSvg = document.getElementById("moveCircle");
+    const circleSvg = document.getElementById("circleToMove");
+    moveCircleSvg.addEventListener('mousedown', (event) => {
+      const rect = event.target.getBoundingClientRect();
+      const newX = event.clientX - rect.left;
+      const newY = event.clientY - rect.top;
+      circleSvg.style.r = 16;
+      circleSvg.style.cx = newX;
+      circleSvg.style.cy = newY;
+      circleSvg.style.fill = "red";
+
+      setTimeout(() => {
+        circleSvg.style.r = 6;
+        circleSvg.style.fill = "pink";
+      }, 500);
+    });
+  </script>
+</body>
+</html>
